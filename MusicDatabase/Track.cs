@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicDatabase
 {
-    internal class Albums
+    internal class Track
     {
     }
 }
