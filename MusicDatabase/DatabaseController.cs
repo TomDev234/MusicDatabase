@@ -37,7 +37,7 @@ namespace MusicDatabase
             connection.Close();
             return albums;
         }
-        public Album getAlbum(int ID)
+         public Album getAlbum(int ID)
         {
             Album album = null;
             MySqlConnection connection = new MySqlConnection(connectionString);
@@ -62,7 +62,8 @@ namespace MusicDatabase
             connection.Close();
             return album;
         }
-        public bool albumExists(Album album) {
+        public bool albumExists(Album album)
+        {
             MySqlConnection connection = new(connectionString);
             connection.Open();
             MySqlCommand command = new();
@@ -70,9 +71,21 @@ namespace MusicDatabase
             command.Parameters.AddWithValue("@albumTitle", album.Albumname);
             command.Parameters.AddWithValue("@artist", album.Artistname);
             command.Connection = connection;
-            int rows = (int)command.ExecuteScalar();
+            long row = (long)command.ExecuteScalar();
             connection.Close();
-            return rows > 0;
+            return row > 0;
+        }
+        public bool albumExists(int albumID)
+        {
+            MySqlConnection connection = new(connectionString);
+            connection.Open();
+            MySqlCommand command = new();
+            command.CommandText = "SELECT COUNT(*) FROM albums WHERE ID = @albumID";
+            command.Parameters.AddWithValue("@albumID", albumID);
+            command.Connection = connection;
+            long row = (long)command.ExecuteScalar();
+            connection.Close();
+            return row > 0;
         }
         public List<Album> searchTitles(string searchTerm)
         {
@@ -231,9 +244,9 @@ namespace MusicDatabase
             command.Parameters.AddWithValue("@number", track.Number);
             command.Parameters.AddWithValue("@albumsID", track.AlbumID);
             command.Connection = connection;
-            int rows = (int)command.ExecuteScalar();
+            long row = (long)command.ExecuteScalar();
             connection.Close();
-            return rows > 0;
+            return row > 0;
         }
         public int insertTrack(Track track) {
             MySqlConnection connection = new MySqlConnection(connectionString);
