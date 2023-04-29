@@ -55,13 +55,14 @@ namespace MusicDatabase
         private void updateButton_Click(object sender, EventArgs e)
         {
             Album album = new();
+            album.ID = int.Parse(idLabel.Text);
             album.Albumname = albumNameTextBox.Text;
             album.Artistname = artistTextBox.Text;
             album.Year = int.Parse(yearTextBox.Text);
             album.ImageURL = imageURLTextBox.Text;
             album.Description = descriptionTextBox.Text;
             DatabaseController databaseController = new DatabaseController();
-            if (!databaseController.albumExists(album))
+            if (!databaseController.albumExists(album.ID))
             {
                 MessageBox.Show("Album does not exist Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             }
@@ -84,7 +85,7 @@ namespace MusicDatabase
                 {
                     DatabaseController databaseController = new DatabaseController();
                     int rows = databaseController.deleteAlbum(album.ID);
-                    message = String.Format("{0} Items deleted", rows);
+                    message = String.Format("{0} Item(s) deleted", rows);
                     MessageBox.Show(message, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
                 }
             }

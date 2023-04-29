@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            albumIDComboBox = new ComboBox();
+            label7 = new Label();
+            idLabel = new Label();
+            label5 = new Label();
             clearButton = new Button();
             deleteButton = new Button();
             updateButton = new Button();
@@ -41,10 +45,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            label5 = new Label();
-            idLabel = new Label();
-            label7 = new Label();
-            albumIDComboBox = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,6 +72,42 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Track";
+            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // albumIDComboBox
+            // 
+            albumIDComboBox.FormattingEnabled = true;
+            albumIDComboBox.Location = new Point(104, 153);
+            albumIDComboBox.Name = "albumIDComboBox";
+            albumIDComboBox.Size = new Size(336, 23);
+            albumIDComboBox.TabIndex = 17;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 156);
+            label7.Name = "label7";
+            label7.Size = new Size(57, 15);
+            label7.TabIndex = 16;
+            label7.Text = "Album ID";
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new Point(104, 19);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new Size(49, 15);
+            idLabel.TabIndex = 15;
+            idLabel.Text = "ID Label";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(18, 15);
+            label5.TabIndex = 14;
+            label5.Text = "ID";
             // 
             // clearButton
             // 
@@ -81,6 +117,7 @@
             clearButton.TabIndex = 13;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // deleteButton
             // 
@@ -90,6 +127,7 @@
             deleteButton.TabIndex = 12;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // updateButton
             // 
@@ -99,6 +137,7 @@
             updateButton.TabIndex = 11;
             updateButton.Text = "Update";
             updateButton.UseVisualStyleBackColor = true;
+            updateButton.Click += updateButton_Click;
             // 
             // addButton
             // 
@@ -108,6 +147,7 @@
             addButton.TabIndex = 10;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // trackLyricsTextBox
             // 
@@ -172,41 +212,6 @@
             label1.Size = new Size(39, 15);
             label1.TabIndex = 0;
             label1.Text = "Name";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 19);
-            label5.Name = "label5";
-            label5.Size = new Size(18, 15);
-            label5.TabIndex = 14;
-            label5.Text = "ID";
-            // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new Point(104, 19);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new Size(49, 15);
-            idLabel.TabIndex = 15;
-            idLabel.Text = "ID Label";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(6, 156);
-            label7.Name = "label7";
-            label7.Size = new Size(57, 15);
-            label7.TabIndex = 16;
-            label7.Text = "Album ID";
-            // 
-            // albumIDComboBox
-            // 
-            albumIDComboBox.FormattingEnabled = true;
-            albumIDComboBox.Location = new Point(104, 153);
-            albumIDComboBox.Name = "albumIDComboBox";
-            albumIDComboBox.Size = new Size(336, 23);
-            albumIDComboBox.TabIndex = 17;
             // 
             // TrackForm
             // 

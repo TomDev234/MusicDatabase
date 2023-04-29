@@ -69,7 +69,14 @@ namespace MusicDatabase
             DataGridView dataGridView = (DataGridView)sender;
             int clickedRow = dataGridView.CurrentRow.Index;
             string? imageURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
-            pictureBox1.Load(imageURL);
+            try
+            {
+                pictureBox1.Load(imageURL);
+            }
+            catch (Exception)
+            {
+                // ignore
+            }
             DatabaseController databaseController = new();
             tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);
             dataGridView2.DataSource = tracksBindingSource;
