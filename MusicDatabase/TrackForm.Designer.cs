@@ -41,11 +41,19 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            label5 = new Label();
+            idLabel = new Label();
+            label7 = new Label();
+            albumIDComboBox = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(albumIDComboBox);
+            groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(idLabel);
+            groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(clearButton);
             groupBox1.Controls.Add(deleteButton);
             groupBox1.Controls.Add(updateButton);
@@ -60,14 +68,14 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(446, 166);
+            groupBox1.Size = new Size(446, 219);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Track";
             // 
             // clearButton
             // 
-            clearButton.Location = new Point(347, 132);
+            clearButton.Location = new Point(347, 182);
             clearButton.Name = "clearButton";
             clearButton.Size = new Size(75, 23);
             clearButton.TabIndex = 13;
@@ -76,7 +84,7 @@
             // 
             // deleteButton
             // 
-            deleteButton.Location = new Point(266, 132);
+            deleteButton.Location = new Point(266, 182);
             deleteButton.Name = "deleteButton";
             deleteButton.Size = new Size(75, 23);
             deleteButton.TabIndex = 12;
@@ -85,7 +93,7 @@
             // 
             // updateButton
             // 
-            updateButton.Location = new Point(185, 132);
+            updateButton.Location = new Point(185, 182);
             updateButton.Name = "updateButton";
             updateButton.Size = new Size(75, 23);
             updateButton.TabIndex = 11;
@@ -94,7 +102,7 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(104, 132);
+            addButton.Location = new Point(104, 182);
             addButton.Name = "addButton";
             addButton.Size = new Size(75, 23);
             addButton.TabIndex = 10;
@@ -103,28 +111,28 @@
             // 
             // trackLyricsTextBox
             // 
-            trackLyricsTextBox.Location = new Point(104, 103);
+            trackLyricsTextBox.Location = new Point(104, 124);
             trackLyricsTextBox.Name = "trackLyricsTextBox";
             trackLyricsTextBox.Size = new Size(336, 23);
             trackLyricsTextBox.TabIndex = 8;
             // 
             // trackVideoURLTextBox
             // 
-            trackVideoURLTextBox.Location = new Point(104, 74);
+            trackVideoURLTextBox.Location = new Point(104, 95);
             trackVideoURLTextBox.Name = "trackVideoURLTextBox";
             trackVideoURLTextBox.Size = new Size(336, 23);
             trackVideoURLTextBox.TabIndex = 7;
             // 
             // trackNumberTextBox
             // 
-            trackNumberTextBox.Location = new Point(104, 45);
+            trackNumberTextBox.Location = new Point(104, 66);
             trackNumberTextBox.Name = "trackNumberTextBox";
             trackNumberTextBox.Size = new Size(336, 23);
             trackNumberTextBox.TabIndex = 6;
             // 
             // trackNameTextBox
             // 
-            trackNameTextBox.Location = new Point(104, 16);
+            trackNameTextBox.Location = new Point(104, 37);
             trackNameTextBox.Name = "trackNameTextBox";
             trackNameTextBox.Size = new Size(336, 23);
             trackNameTextBox.TabIndex = 5;
@@ -132,7 +140,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(6, 106);
+            label4.Location = new Point(6, 127);
             label4.Name = "label4";
             label4.Size = new Size(36, 15);
             label4.TabIndex = 3;
@@ -141,7 +149,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(6, 77);
+            label3.Location = new Point(6, 98);
             label3.Name = "label3";
             label3.Size = new Size(61, 15);
             label3.TabIndex = 2;
@@ -150,7 +158,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(6, 48);
+            label2.Location = new Point(6, 69);
             label2.Name = "label2";
             label2.Size = new Size(51, 15);
             label2.TabIndex = 1;
@@ -159,17 +167,52 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(6, 19);
+            label1.Location = new Point(6, 40);
             label1.Name = "label1";
             label1.Size = new Size(39, 15);
             label1.TabIndex = 0;
             label1.Text = "Name";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(18, 15);
+            label5.TabIndex = 14;
+            label5.Text = "ID";
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new Point(104, 19);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new Size(49, 15);
+            idLabel.TabIndex = 15;
+            idLabel.Text = "ID Label";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 156);
+            label7.Name = "label7";
+            label7.Size = new Size(57, 15);
+            label7.TabIndex = 16;
+            label7.Text = "Album ID";
+            // 
+            // albumIDComboBox
+            // 
+            albumIDComboBox.FormattingEnabled = true;
+            albumIDComboBox.Location = new Point(104, 153);
+            albumIDComboBox.Name = "albumIDComboBox";
+            albumIDComboBox.Size = new Size(336, 23);
+            albumIDComboBox.TabIndex = 17;
+            // 
             // TrackForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(469, 191);
+            ClientSize = new Size(469, 239);
             Controls.Add(groupBox1);
             Name = "TrackForm";
             Text = "Music Database Track";
@@ -193,5 +236,9 @@
         private Label label3;
         private Label label2;
         private Label label1;
+        private ComboBox albumIDComboBox;
+        private Label label7;
+        private Label idLabel;
+        private Label label5;
     }
 }

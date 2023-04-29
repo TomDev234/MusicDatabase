@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace MusicDatabase
 {
     public partial class Form1 : Form
@@ -18,12 +20,33 @@ namespace MusicDatabase
 
         private void editDatabaseButton_Click(object sender, EventArgs e)
         {
-            AlbumForm albumForm = new();
-            albumForm.Show();
+            Album album = null;
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Table is empty", "Music Database");
+            }
+            else
+            {
+                int currentRow = dataGridView1.CurrentRow.Index;
+                int albumID = (int)dataGridView1.Rows[currentRow].Cells[0].Value;
+                DatabaseController databaseController = new();
+                album = databaseController.getAlbum(albumID);
+                AlbumForm albumForm = new();
+                albumForm.album = album;
+                albumForm.Show();
+            }
         }
 
         private void editTrackButton_Click(object sender, EventArgs e)
         {
+            if (dataGridView2.CurrentRow != null)
+            {
+
+                int currentRow = dataGridView2.CurrentRow.Index;
+
+                MessageBox.Show("Current Row = " + currentRow);
+
+            }
             TrackForm trackForm = new();
             trackForm.Show();
         }
