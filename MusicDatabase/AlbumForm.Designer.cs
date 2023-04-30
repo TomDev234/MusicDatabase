@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            idLabel = new Label();
             label6 = new Label();
             clearButton = new Button();
             deleteButton = new Button();
@@ -44,7 +45,6 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            idLabel = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -72,6 +72,15 @@
             groupBox1.TabIndex = 7;
             groupBox1.TabStop = false;
             groupBox1.Text = "Album";
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new Point(104, 16);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new Size(49, 15);
+            idLabel.TabIndex = 15;
+            idLabel.Text = "ID Label";
             // 
             // label6
             // 
@@ -202,15 +211,6 @@
             label1.TabIndex = 0;
             label1.Text = "Name";
             // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new Point(104, 16);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new Size(49, 15);
-            idLabel.TabIndex = 15;
-            idLabel.Text = "ID Label";
-            // 
             // AlbumForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -219,6 +219,7 @@
             Controls.Add(groupBox1);
             Name = "AlbumForm";
             Text = "Music Database Album";
+            FormClosed += AlbumForm_FormClosed;
             Load += AlbumForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

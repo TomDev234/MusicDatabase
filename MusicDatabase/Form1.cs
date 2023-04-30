@@ -1,3 +1,5 @@
+using Google.Protobuf.WellKnownTypes;
+using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
 
 namespace MusicDatabase
@@ -20,17 +22,16 @@ namespace MusicDatabase
 
         private void editDatabaseButton_Click(object sender, EventArgs e)
         {
-            Album album = null;
             if (dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("Table is empty", "Music Database");
+                MessageBox.Show("Table is empty", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             }
             else
             {
                 int currentRow = dataGridView1.CurrentRow.Index;
                 int albumID = (int)dataGridView1.Rows[currentRow].Cells[0].Value;
                 DatabaseController databaseController = new();
-                album = databaseController.getAlbum(albumID);
+                Album album = databaseController.getAlbum(albumID);
                 AlbumForm albumForm = new();
                 albumForm.album = album;
                 albumForm.Show();
@@ -39,16 +40,21 @@ namespace MusicDatabase
 
         private void editTrackButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView2.CurrentRow != null)
+            if (dataGridView2.CurrentRow == null)
             {
-
-                int currentRow = dataGridView2.CurrentRow.Index;
-
-                MessageBox.Show("Current Row = " + currentRow);
-
+                MessageBox.Show("Table is empty", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
             }
-            TrackForm trackForm = new();
-            trackForm.Show();
+            else
+            {
+                int currentRow = dataGridView2.CurrentRow.Index;
+                JValue trackIDValue = (JValue)dataGridView2.Rows[currentRow].Cells[0].Value;
+                int trackID = trackIDValue.Value<int>();
+                DatabaseController databaseController = new();
+                Track track = databaseController.getTrack(trackID);
+                TrackForm trackForm = new();
+                trackForm.track = track;
+                trackForm.Show();
+            }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
