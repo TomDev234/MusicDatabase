@@ -42,15 +42,15 @@ namespace MusicDatabase
             DatabaseController databaseController = new DatabaseController();
             if (databaseController.albumExists(album))
             {
-                MessageBox.Show("Album already exists!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                MessageBox.Show("Album already exists!", Application.ProductName);
             }
             else
             {
                 int rows = databaseController.insertAlbum(album);
                 if (rows == 0)
-                    MessageBox.Show("Adding the Album failed Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Adding the Album failed Error!", Application.ProductName);
                 else
-                    MessageBox.Show("Album Added", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Album Added", Application.ProductName);
             }
         }
 
@@ -66,15 +66,15 @@ namespace MusicDatabase
             DatabaseController databaseController = new DatabaseController();
             if (!databaseController.albumExists(album.ID))
             {
-                MessageBox.Show("Album does not exist Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                MessageBox.Show("Album does not exist Error!", Application.ProductName);
             }
             else
             {
                 int rows = databaseController.updateAlbum(album);
                 if (rows == 0)
-                    MessageBox.Show("Updating the Album failed Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Updating the Album failed Error!", Application.ProductName);
                 else
-                    MessageBox.Show("Album updated", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Album updated", Application.ProductName);
             }
         }
 
@@ -88,7 +88,7 @@ namespace MusicDatabase
                     DatabaseController databaseController = new DatabaseController();
                     int rows = databaseController.deleteAlbum(album.ID);
                     message = String.Format("{0} Item(s) deleted", rows);
-                    MessageBox.Show(message, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show(message, Application.ProductName);
                 }
             }
         }
