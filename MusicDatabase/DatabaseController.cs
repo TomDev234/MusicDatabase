@@ -12,7 +12,6 @@ namespace MusicDatabase
     internal class DatabaseController
     {
         Settings settings = new();
-        // readonly string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=music;";
         string connectionString;
         public DatabaseController()
         {

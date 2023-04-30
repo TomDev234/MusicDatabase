@@ -7,11 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MusicDatabase.Delegates;
 
 namespace MusicDatabase
 {
     public partial class AlbumForm : Form
     {
+        public Delegates.EditAlbumCallback albumCallback;
         public Album? album = null;
         public AlbumForm()
         {
@@ -104,7 +106,7 @@ namespace MusicDatabase
 
         private void AlbumForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // send Delegate Message
+            albumCallback();
         }
     }
 }

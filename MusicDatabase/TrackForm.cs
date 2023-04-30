@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MusicDatabase.Delegates;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MusicDatabase
 {
     public partial class TrackForm : Form
     {
+        public Delegates.EditTrackCallback trackCallback;
         public Track? track = null;
         public TrackForm()
         {
@@ -112,6 +114,11 @@ namespace MusicDatabase
             trackNumberTextBox.Text = string.Empty;
             trackVideoURLTextBox.Text = string.Empty;
             trackLyricsTextBox.Text = string.Empty;
+        }
+
+        private void TrackForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            trackCallback();
         }
     }
 }
