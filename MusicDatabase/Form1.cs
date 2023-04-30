@@ -33,6 +33,7 @@ namespace MusicDatabase
                 DatabaseController databaseController = new();
                 Album album = databaseController.getAlbum(albumID);
                 AlbumForm albumForm = new();
+                albumForm.albumCallback = new(EditAlbumClosed);
                 albumForm.album = album;
                 albumForm.Show();
             }
@@ -52,6 +53,7 @@ namespace MusicDatabase
                 DatabaseController databaseController = new();
                 Track track = databaseController.getTrack(trackID);
                 TrackForm trackForm = new();
+                trackForm.trackCallback = new(EditTrackClosed);
                 trackForm.track = track;
                 trackForm.Show();
             }
@@ -100,6 +102,23 @@ namespace MusicDatabase
                 videoPlayer.videoURL = videoURL;
                 videoPlayer.InitiateBrowser();
             }       
+        }
+
+        private void EditAlbumClosed()
+        {
+            // reload Album Table
+            DatabaseController databaseController = new();
+            albumBindingSource.DataSource = databaseController.getAllAlbums();
+            dataGridView1.DataSource = albumBindingSource;
+        }
+
+        private void EditTrackClosed()
+        {
+            // reload Track Table
+            int clickedRow = dataGridView1.CurrentRow.Index;
+            DatabaseController databaseController = new();
+            tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView1.Rows[clickedRow].Cells[0].Value);
+            dataGridView2.DataSource = tracksBindingSource;
         }
     }
 }

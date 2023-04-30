@@ -8,7 +8,7 @@ namespace MusicDatabase
 {
     internal class Settings
     {
-        public string? connectionString { get; set; }
+        public string connectionString { get; set; }
         public void Read() {
             try
             {

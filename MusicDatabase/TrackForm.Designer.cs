@@ -220,6 +220,7 @@
             Controls.Add(groupBox1);
             Name = "TrackForm";
             Text = "Music Database Track";
+            FormClosed += TrackForm_FormClosed;
             Load += TrackForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
