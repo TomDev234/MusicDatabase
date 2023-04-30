@@ -101,5 +101,10 @@ namespace MusicDatabase
             imageURLTextBox.Text = string.Empty;
             descriptionTextBox.Text = string.Empty;
         }
+
+        private void AlbumForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // send Delegate Message
+        }
     }
 }

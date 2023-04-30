@@ -11,7 +11,14 @@ namespace MusicDatabase
 {
     internal class DatabaseController
     {
-        readonly string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=music;";
+        Settings settings = new();
+        // readonly string connectionString = "datasource=localhost;port=3306;username=root;password=root;database=music;";
+        string connectionString;
+        public DatabaseController()
+        {
+            settings.Read();
+            connectionString = settings.connectionString;
+        }
         public List<Album> getAllAlbums()
         {
             List<Album> albums = new();
@@ -235,7 +242,8 @@ namespace MusicDatabase
             connection.Close();
             return track;
         }
-        public bool trackExists(Track track) {
+        public bool trackExists(Track track)
+        {
             MySqlConnection connection = new(connectionString);
             connection.Open();
             MySqlCommand command = new();
@@ -243,6 +251,18 @@ namespace MusicDatabase
             command.Parameters.AddWithValue("@title", track.Name);
             command.Parameters.AddWithValue("@number", track.Number);
             command.Parameters.AddWithValue("@albumsID", track.AlbumID);
+            command.Connection = connection;
+            long row = (long)command.ExecuteScalar();
+            connection.Close();
+            return row > 0;
+        }
+        public bool trackExists(int trackID)
+        {
+            MySqlConnection connection = new(connectionString);
+            connection.Open();
+            MySqlCommand command = new();
+            command.CommandText = "SELECT COUNT(*) FROM tracks WHERE ID = @trackID";
+            command.Parameters.AddWithValue("@trackID", trackID);
             command.Connection = connection;
             long row = (long)command.ExecuteScalar();
             connection.Close();

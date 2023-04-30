@@ -72,7 +72,6 @@
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
             groupBox1.Text = "Track";
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // albumIDComboBox
             // 
@@ -221,6 +220,7 @@
             Controls.Add(groupBox1);
             Name = "TrackForm";
             Text = "Music Database Track";
+            Load += TrackForm_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
