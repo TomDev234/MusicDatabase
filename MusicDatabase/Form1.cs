@@ -86,7 +86,7 @@ namespace MusicDatabase
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(exception.Message, Application.ProductName);
             }
         }
 
@@ -106,7 +106,7 @@ namespace MusicDatabase
                 }
             }
             catch (Exception exception) {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(exception.Message, Application.ProductName);
             }
         }
 
