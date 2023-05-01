@@ -16,6 +16,7 @@ namespace MusicDatabase
     public partial class TrackForm : Form
     {
         public Delegates.EditTrackCallback trackCallback;
+        List<Album> albums;
         public Track? track = null;
         public TrackForm()
         {
@@ -31,17 +32,19 @@ namespace MusicDatabase
             trackLyricsTextBox.Text = track.Lyrics;
             // get Albums
             DatabaseController databaseController = new();
-            List<Album> albums = databaseController.getAllAlbums();
+            albums = databaseController.getAllAlbums();
             // init Combobox
-            int i = 1;
+            int i = 0;
             albumIDComboBox.BeginUpdate();
             foreach (var album in albums)
             {
-                albumIDComboBox.Items.Add(i.ToString() + "-" + album.Albumname);
+                albumIDComboBox.Items.Add(album.ID.ToString() + "-" + album.Albumname);
                 i++;
             }
             albumIDComboBox.EndUpdate();
-            albumIDComboBox.SelectedIndex = track.AlbumID - 1;
+
+            // albumIDComboBox.SelectedIndex = track.AlbumID - 1;
+        
         }
 
         private void addButton_Click(object sender, EventArgs e)

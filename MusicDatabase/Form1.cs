@@ -1,6 +1,7 @@
 using Google.Protobuf.WellKnownTypes;
 using Newtonsoft.Json.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace MusicDatabase
 {
@@ -24,7 +25,7 @@ namespace MusicDatabase
         {
             if (dataGridView1.CurrentRow == null)
             {
-                MessageBox.Show("Table is empty", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                MessageBox.Show("Table is empty", Application.ProductName);
             }
             else
             {
@@ -41,9 +42,14 @@ namespace MusicDatabase
 
         private void editTrackButton_Click(object sender, EventArgs e)
         {
+            Track track = new();
             if (dataGridView2.CurrentRow == null)
             {
-                MessageBox.Show("Table is empty", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                int currentRow = dataGridView1.CurrentRow.Index;
+                int albumID = (int)dataGridView1.Rows[currentRow].Cells[0].Value;
+                track.ID = -1;
+                track.Number = 1;
+                track.AlbumID = albumID;
             }
             else
             {
@@ -51,12 +57,12 @@ namespace MusicDatabase
                 JValue trackIDValue = (JValue)dataGridView2.Rows[currentRow].Cells[0].Value;
                 int trackID = trackIDValue.Value<int>();
                 DatabaseController databaseController = new();
-                Track track = databaseController.getTrack(trackID);
-                TrackForm trackForm = new();
-                trackForm.trackCallback = new(EditTrackClosed);
-                trackForm.track = track;
-                trackForm.Show();
+                track = databaseController.getTrack(trackID);
             }
+            TrackForm trackForm = new();
+            trackForm.trackCallback = new(EditTrackClosed);
+            trackForm.track = track;
+            trackForm.Show();
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,6 +122,10 @@ namespace MusicDatabase
             DatabaseController databaseController = new();
             albumBindingSource.DataSource = databaseController.getAllAlbums();
             dataGridView1.DataSource = albumBindingSource;
+            // reload Track Table
+            int clickedRow = dataGridView1.CurrentRow.Index;
+            tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView1.Rows[clickedRow].Cells[0].Value);
+            dataGridView2.DataSource = tracksBindingSource;
         }
 
         private void EditTrackClosed()

@@ -134,6 +134,7 @@
             // descriptionTextBox
             // 
             descriptionTextBox.Location = new Point(104, 158);
+            descriptionTextBox.Multiline = true;
             descriptionTextBox.Name = "descriptionTextBox";
             descriptionTextBox.Size = new Size(336, 23);
             descriptionTextBox.TabIndex = 9;
