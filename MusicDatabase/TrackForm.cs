@@ -17,6 +17,7 @@ namespace MusicDatabase
     {
         public Delegates.EditTrackCallback trackCallback;
         List<Album> albums;
+        int[] albumIDs;
         public Track? track = null;
         public TrackForm()
         {
@@ -35,16 +36,18 @@ namespace MusicDatabase
             albums = databaseController.getAllAlbums();
             // init Combobox
             int i = 0;
+            albumIDs = new int[albums.Count];
             albumIDComboBox.BeginUpdate();
             foreach (var album in albums)
             {
                 albumIDComboBox.Items.Add(album.ID.ToString() + "-" + album.Albumname);
+                albumIDs[i] = album.ID;
                 i++;
             }
             albumIDComboBox.EndUpdate();
-
-            // albumIDComboBox.SelectedIndex = track.AlbumID - 1;
-        
+            // find albumÍD in albumIDs
+            int index = Array.IndexOf(albumIDs, track.AlbumID);
+            albumIDComboBox.SelectedIndex = index;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -54,7 +57,7 @@ namespace MusicDatabase
             track.Number = int.Parse(trackNumberTextBox.Text);
             track.VideoURL = trackVideoURLTextBox.Text;
             track.Lyrics = trackLyricsTextBox.Text;
-            track.AlbumID = albumIDComboBox.SelectedIndex + 1;
+            track.AlbumID = albumIDs[albumIDComboBox.SelectedIndex];
             DatabaseController databaseController = new DatabaseController();
             if (databaseController.trackExists(track))
             {
@@ -78,7 +81,7 @@ namespace MusicDatabase
             track.Number = int.Parse(trackNumberTextBox.Text);
             track.VideoURL = trackVideoURLTextBox.Text;
             track.Lyrics = trackLyricsTextBox.Text;
-            track.AlbumID = albumIDComboBox.SelectedIndex + 1;
+            track.AlbumID = albumIDs[albumIDComboBox.SelectedIndex];
             DatabaseController databaseController = new DatabaseController();
             if (!databaseController.trackExists(track.ID))
             {
