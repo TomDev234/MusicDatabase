@@ -153,12 +153,15 @@ namespace MusicDatabase
         public int deleteAlbum(int albumID) {
             MySqlConnection connection = new MySqlConnection(connectionString);
             connection.Open();
-            MySqlCommand command = new MySqlCommand("DELETE FROM albums WHERE ID = @albumID", connection);
-            command.Parameters.AddWithValue("@albumID", albumID);
-            int albumRows = command.ExecuteNonQuery();
-            command = new MySqlCommand("DELETE FROM tracks WHERE albums_ID  = @albumID", connection);
+
+            MySqlCommand command = new MySqlCommand("DELETE FROM tracks WHERE albums_ID  = @albumID", connection);
             command.Parameters.AddWithValue("@albumID", albumID);
             int trackRows = command.ExecuteNonQuery();
+            
+            command = new MySqlCommand("DELETE FROM albums WHERE ID = @albumID", connection);
+            command.Parameters.AddWithValue("@albumID", albumID);
+            int albumRows = command.ExecuteNonQuery();
+            
             int rows = albumRows + trackRows;
             connection.Close();
             return rows;
