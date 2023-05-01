@@ -74,34 +74,40 @@ namespace MusicDatabase
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dataGridView = (DataGridView)sender;
-            int clickedRow = dataGridView.CurrentRow.Index;
-            string? imageURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
             try
             {
+                DataGridView dataGridView = (DataGridView)sender;
+                int clickedRow = dataGridView.CurrentRow.Index;
+                string? imageURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
                 pictureBox1.Load(imageURL);
+                DatabaseController databaseController = new();
+                tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);
+                dataGridView2.DataSource = tracksBindingSource;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                // ignore
+                MessageBox.Show(exception.Message);
             }
-            DatabaseController databaseController = new();
-            tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);
-            dataGridView2.DataSource = tracksBindingSource;
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dataGridView = (DataGridView)sender;
-            int clickedRow = dataGridView.CurrentRow.Index;
-            string? videoURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
-            if (videoURL != null)
+            try
             {
-                VideoPlayer videoPlayer = new VideoPlayer();
-                videoPlayer.webView = webView21;
-                videoPlayer.videoURL = videoURL;
-                videoPlayer.InitiateBrowser();
-            }       
+                DataGridView dataGridView = (DataGridView)sender;
+                int clickedRow = dataGridView.CurrentRow.Index;
+                string? videoURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
+                if (videoURL != null)
+                {
+                    VideoPlayer videoPlayer = new VideoPlayer();
+                    videoPlayer.webView = webView21;
+                    videoPlayer.videoURL = videoURL;
+                    videoPlayer.InitiateBrowser();
+                }
+            }
+            catch (Exception exception) {
+                MessageBox.Show(exception.Message);
+            }
         }
 
         private void EditAlbumClosed()
