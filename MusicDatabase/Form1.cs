@@ -85,11 +85,18 @@ namespace MusicDatabase
             string? imageURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
             try
             {
-                pictureBox1.Load(imageURL);
+                if (imageURL == null || imageURL == "")
+                {
+                    pictureBox1.Image = null;
+                }
+                else
+                {
+                    pictureBox1.Load(imageURL);
+                }
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message, Application.ProductName);
+                MessageBox.Show("Picture Loading failed Error!\n" + exception.Message, Application.ProductName);
             }
             DatabaseController databaseController = new();
             tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);
