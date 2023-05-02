@@ -96,7 +96,7 @@ namespace MusicDatabase
             }
             catch (Exception exception)
             {
-                MessageBox.Show("Picture Loading failed Error!\n" + exception.Message, Application.ProductName);
+                MessageBox.Show("Picture Loading failed Error!\n" + exception.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             DatabaseController databaseController = new();
             tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);

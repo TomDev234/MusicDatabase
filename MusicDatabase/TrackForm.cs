@@ -61,15 +61,15 @@ namespace MusicDatabase
             DatabaseController databaseController = new DatabaseController();
             if (databaseController.trackExists(track))
             {
-                MessageBox.Show("Track already exists!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                MessageBox.Show("Track already exists!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 int rows = databaseController.insertTrack(track);
                 if (rows == 0)
-                    MessageBox.Show("Adding the Track failed Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Adding the Track failed Error!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show("Track Added", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Track Added", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -85,15 +85,15 @@ namespace MusicDatabase
             DatabaseController databaseController = new DatabaseController();
             if (!databaseController.trackExists(track.ID))
             {
-                MessageBox.Show("Track does not exist Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                MessageBox.Show("Track does not exist Error!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 int rows = databaseController.updateTrack(track);
                 if (rows == 0)
-                    MessageBox.Show("Updating the Track failed Error!", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Updating the Track failed Error!", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show("Track updated", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show("Track updated", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -102,12 +102,12 @@ namespace MusicDatabase
             if (track != null)
             {
                 string message = String.Format("Do you want to delete Track {0}?", track.ID);
-                if (MessageBox.Show(message, "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(message, "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     DatabaseController databaseController = new DatabaseController();
                     int rows = databaseController.deleteTrack(track.ID);
                     message = String.Format("{0} Item(s) deleted", rows);
-                    MessageBox.Show(message, System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                    MessageBox.Show(message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
