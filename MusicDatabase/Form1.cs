@@ -80,20 +80,20 @@ namespace MusicDatabase
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridView dataGridView = (DataGridView)sender;
+            int clickedRow = dataGridView.CurrentRow.Index;
+            string? imageURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
             try
             {
-                DataGridView dataGridView = (DataGridView)sender;
-                int clickedRow = dataGridView.CurrentRow.Index;
-                string? imageURL = dataGridView.Rows[clickedRow].Cells[4].Value.ToString();
                 pictureBox1.Load(imageURL);
-                DatabaseController databaseController = new();
-                tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);
-                dataGridView2.DataSource = tracksBindingSource;
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, Application.ProductName);
             }
+            DatabaseController databaseController = new();
+            tracksBindingSource.DataSource = databaseController.getTracksUsingJoin((int)dataGridView.Rows[clickedRow].Cells[0].Value);
+            dataGridView2.DataSource = tracksBindingSource;
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
