@@ -34,7 +34,7 @@ namespace MusicDatabase
                 DatabaseController databaseController = new();
                 Album album = databaseController.getAlbum(albumID);
                 AlbumForm albumForm = new();
-                albumForm.albumCallback = new(EditAlbumClosed);
+                Delegates.albumCallback = new(EditAlbumClosed);
                 albumForm.album = album;
                 albumForm.Show();
             }
@@ -60,7 +60,7 @@ namespace MusicDatabase
                 track = databaseController.getTrack(trackID);
             }
             TrackForm trackForm = new();
-            trackForm.trackCallback = new(EditTrackClosed);
+            Delegates.trackCallback = new(EditTrackClosed);
             trackForm.track = track;
             trackForm.Show();
         }

@@ -22,28 +22,35 @@ namespace MusicDatabase
         {
             List<Album> albums = new();
             MySqlConnection connection = new MySqlConnection(connectionString);
-            connection.Open();
-            MySqlCommand command = new MySqlCommand("SELECT * FROM `albums`", connection);
-            using (MySqlDataReader dataReader = command.ExecuteReader())
+            try
             {
-                while (dataReader.Read())
+                connection.Open();
+                MySqlCommand command = new MySqlCommand("SELECT * FROM `albums`", connection);
+                using (MySqlDataReader dataReader = command.ExecuteReader())
                 {
-                    Album album = new Album
+                    while (dataReader.Read())
                     {
-                        ID = dataReader.GetInt32(0),
-                        Albumname = dataReader.GetString(1),
-                        Artistname = dataReader.GetString(2),
-                        Year = dataReader.GetInt32(3),
-                        ImageURL = dataReader.GetString(4),
-                        Description = dataReader.GetString(5)
-                    };
-                    albums.Add(album);
+                        Album album = new Album
+                        {
+                            ID = dataReader.GetInt32(0),
+                            Albumname = dataReader.GetString(1),
+                            Artistname = dataReader.GetString(2),
+                            Year = dataReader.GetInt32(3),
+                            ImageURL = dataReader.GetString(4),
+                            Description = dataReader.GetString(5)
+                        };
+                        albums.Add(album);
+                    }
                 }
+                connection.Close();
             }
-            connection.Close();
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             return albums;
         }
-         public Album getAlbum(int ID)
+        public Album getAlbum(int ID)
         {
             Album album = null;
             MySqlConnection connection = new MySqlConnection(connectionString);

@@ -13,7 +13,6 @@ namespace MusicDatabase
 {
     public partial class AlbumForm : Form
     {
-        public Delegates.EditAlbumCallback albumCallback;
         public Album? album = null;
         public AlbumForm()
         {
@@ -106,7 +105,7 @@ namespace MusicDatabase
 
         private void AlbumForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            albumCallback();
+            Delegates.albumCallback();
         }
     }
 }

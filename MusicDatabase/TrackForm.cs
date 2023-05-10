@@ -15,7 +15,6 @@ namespace MusicDatabase
 {
     public partial class TrackForm : Form
     {
-        public Delegates.EditTrackCallback trackCallback;
         List<Album> albums;
         int[] albumIDs;
         public Track? track = null;
@@ -124,7 +123,7 @@ namespace MusicDatabase
 
         private void TrackForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            trackCallback();
+            Delegates.trackCallback();
         }
     }
 }

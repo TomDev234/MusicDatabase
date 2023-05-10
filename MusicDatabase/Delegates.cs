@@ -10,5 +10,7 @@ namespace MusicDatabase
     {
         public delegate void EditAlbumCallback();
         public delegate void EditTrackCallback();
+        public static EditAlbumCallback albumCallback;
+        public static EditTrackCallback trackCallback;
     }
 }
